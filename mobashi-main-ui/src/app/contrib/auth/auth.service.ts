@@ -162,7 +162,14 @@ export class AuthService {
 
   public async passwordReset(uid?: string, token?: string, new_password?: string, re_new_password?: string) {
     this.api.updateRestService('/users', this.appConfig.HOST, 'auth/users/reset_password_confirm/');
-    await this.usersService.create({ uid, token, new_password, re_new_password });
+    const res = await this.usersService.create({ uid, token, new_password, re_new_password })
+      .then((data: any) => {
+        //if configuration specifies an URL, navigate to it
+        if (this.appConfig.AFTER_REGISTER_URL)
+          this.router.navigateByUrl(this.appConfig.AFTER_REGISTER_URL);
+      });
     this.api.updateRestService('/users', this.appConfig.HOST, 'auth/users/');
+
+    return res;
   }
 }
