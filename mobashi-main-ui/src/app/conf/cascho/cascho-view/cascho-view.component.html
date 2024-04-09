@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="brand">
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon name="close" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>
+      {{ object.name }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ng-container *ngIf="!!object.qrcode">
+  <!--   <textarea style="display: none;" #url>{{ object.qrcode.url }}</textarea>
+  <ion-textarea id="url" [value]="object.qrcode.url">
+  </ion-textarea> -->
+
+  <ion-button color="primary" fill="outline" expand="block" (click)="copy(object.qrcode.url)">
+    {{ 'DEF.COPY' | transloco }}
+    <ion-icon name="copy" slot="start"></ion-icon>
+  </ion-button>
+
+  <ion-item>
+    <ion-label class="ion-text-wrap">
+      <small>
+        <a id="url" href="{{ object.qrcode.url }}" target="_blank">
+          {{ object.qrcode.url }}
+        </a>
+      </small>
+    </ion-label>
+  </ion-item>
+
+  <ion-img [src]="object.qrcode.img" class="qrcodeImage" />
+</ng-container>

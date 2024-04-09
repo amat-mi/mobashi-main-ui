@@ -1,0 +1,35 @@
+<ng-template transloco let-fn="$implicit">
+  <ng-container *ngIf="selectedCity$ | async; let city">
+    <ion-header>
+      <ion-toolbar color="brand">
+        <ion-buttons slot="start">
+          <ion-menu-button menu="conf"></ion-menu-button>
+        </ion-buttons>
+
+        <ion-title>
+          {{ tr.c(fn,'CONF.PAGETITLE') }}
+        </ion-title>
+
+        <ion-buttons slot="end">
+          <ion-button routerLink="/settings" routerDirection="forward">
+            <ion-icon slot="icon-only" name="settings"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <ng-container *ngIf="menuData$ | async | async; let menuData">
+        <ion-list>
+          <ion-menu-toggle auto-hide="false" *ngFor="let l of menuData?.links ?? []">
+            <ion-item [class]="l.class ?? ''" [routerDirection]="'forward'" [routerLink]="l.path" lines="none"
+              routerLinkActive="activeMenuItem" [relativeTo]="this.activatedRoute.root">
+              <ion-icon [slot]="l.iconSlot ?? 'start'" [name]="l.icon" *ngIf="!!l.icon"></ion-icon>
+              <ion-label>{{ tr.c(fn,l.key) }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ng-container>
+    </ion-content>
+  </ng-container>
+</ng-template>

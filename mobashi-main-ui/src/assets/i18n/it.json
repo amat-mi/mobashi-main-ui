@@ -1,0 +1,247 @@
+{
+    "DEF": {
+        "DONE": "Fatto",
+        "CANCEL": "Annulla",
+        "ABANDON": "Abbandona",
+        "YES": "Sì",
+        "NO": "No",
+        "OK": "OK",
+        "VIEW": "Visualizza",
+        "IGNORE": "Ignora",
+        "UNDO": "Annulla",
+        "LANG": "Lingua",
+        "LOGIN": "Accedi",
+        "LOGOUT": "Esci",
+        "EXECUTE": "Esegui",
+        "ERROR": "Errore",
+        "SAVE": "Salva",
+        "SEARCH": "Ricerca",
+        "COPY": "Copia",
+        "COPIED": "Copiato",
+        "CONFIRM": "Conferma",
+        "CONFIRM_ASK": "Confermi?",
+        "EMAIL": "EMail",
+        "USER.SINGULAR": "Utente",
+        "USER.PLURAL": "Utenti",
+        "CAMPAIGN.SINGULAR": "Campagna",
+        "CAMPAIGN.PLURAL": "Campagne",
+        "SCHOOL.SINGULAR": "Scuola",
+        "SCHOOL.PLURAL": "Scuole",
+        "ROLE.SINGULAR": "Ruolo",
+        "ROLE.PLURAL": "Ruoli",
+        "CASCHO.SINGULAR": "Cascho",
+        "CASCHO.PLURAL": "Caschos",
+        "SURVEY.SINGULAR": "Questionario",
+        "SURVEY.PLURAL": "Questionari",
+        "STUDENT.SINGULAR": "Studente",
+        "STUDENT.PLURAL": "Studenti"
+    },
+    "ERROR": {
+        "AUTH.INVALIDLOGIN": "Credenziali non valide"
+    },
+    "SUCCESS": {
+        "AUTH.VALIDLOGIN": "Accesso riuscito"
+    },
+    "LOGIN": {
+        "PAGETITLE": "Accesso",
+        "USERNAME": "Nome utente o chiave di accesso",
+        "PASSWORD": "Password o chiave di accesso",
+        "LOGIN": "Accedi"
+    },
+    "REGISTER": {
+        "PAGETITLE": "Registrazione",
+        "USERNAME": "Nome utente",
+        "PASSWORD": "Password",
+        "PASSWORD2": "Conferma password",
+        "EMAIL": "{{DEF.EMAIL}}",
+        "REGISTER": "Registrati"
+    },
+    "PASSWORDRESET": {
+        "PAGETITLE": "Reimpostazione password",
+        "PASSWORD": "Password",
+        "PASSWORD2": "Conferma password",
+        "EXECUTE": "Reimposta password"
+    },
+    "LANG": {
+        "OVERVIEW.LABEL": "Lingua",
+        "SETTINGS.LABEL": "{{LANG.OVERVIEW.LABEL}}"
+    },
+    "THEME": {
+        "NAMES": {
+            "AUTO": "Automatico",
+            "LIGHT": "Chiaro",
+            "DARK": "Scuro"
+        },
+        "OVERVIEW.LABEL": "Tema",
+        "SETTINGS.LABEL": "{{THEME.OVERVIEW.LABEL}}"
+    },
+    "SETTINGS": {
+        "SINGULAR": "Impostazione",
+        "PLURAL": "Impostazioni",
+        "MENUTITLE": "{{SETTINGS.PLURAL}}",
+        "PAGETITLE": "{{SETTINGS.PLURAL}}",
+        "USER": "Utente",
+        "LOGOUT": "Esci",
+        "OVERVIEW.TITLE": "IMPOSTAZIONI"
+    },
+    "ACCOUNT": {
+        "USERNAME": "Nome utente",
+        "EMAIL": "{{DEF.EMAIL}}",
+        "LOGOUT": "Esci",
+        "SETTINGS.TITLE": "PROFILO"
+    },
+    "HOME": {
+        "MENUTITLE": "Riepilogo",
+        "PAGETITLE": "{{HOME.MENUTITLE}}",
+        "SLOGAN": "Analisi delle preferenze di spostamento",
+        "CAMPAIGNS": "{{DEF.CAMPAIGN.PLURAL}}",
+        "SCHOOLS": "{{DEF.SCHOOL.PLURAL}}"
+    },
+    "CONF": {
+        "MENUTITLE": "Configurazione",
+        "PAGETITLE": "Configurazione",
+        "DELETE1": "Cancellare: {{OBJECT}}",
+        "DELETE2": "Procedere con la cancellazione di: {{OBJECT}}"
+    },
+    "CONF.CAMPAIGNS": {
+        "MENUTITLE": "{{DEF.CAMPAIGN.PLURAL}}",
+        "PAGETITLE": "{{DEF.CAMPAIGN.PLURAL}}"
+    },
+    "CONF.CAMPAIGN": {
+        "MENUTITLE": "{{DEF.CAMPAIGN.SINGULAR}}",
+        "PAGETITLE": "{{DEF.CAMPAIGN.SINGULAR}}",
+        "NAME": "Nome",
+        "STAMP_START": "Inizia",
+        "STAMP_END": "Termina",
+        "ADDSCHOOLTITLE": "Aggiungi scuola",
+        "STATES": {
+            "-100.SINGULAR": "Disabilitata",
+            "-100.PLURAL": "Disabilitate",
+            "0.SINGULAR": "Attiva",
+            "0.PLURAL": "Attive",
+            "50.SINGULAR": "Non iniziata",
+            "50.PLURAL": "Non iniziate",
+            "100.SINGULAR": "Terminata",
+            "100.PLURAL": "Terminate"
+        }
+    },
+    "CONF.SCHOOLS": {
+        "MENUTITLE": "{{DEF.SCHOOL.PLURAL}}",
+        "PAGETITLE": "{{DEF.SCHOOL.PLURAL}}"
+    },
+    "CONF.SCHOOL": {
+        "MENUTITLE": "{{DEF.SCHOOL.SINGULAR}}",
+        "PAGETITLE": "{{DEF.SCHOOL.SINGULAR}}",
+        "NAME": "Name",
+        "CODE": "Codice",
+        "EMAIL": "{{DEF.EMAIL}}",
+        "STUDENTS": "Studenti",
+        "ADDRESS": "Indirizzo",
+        "LATITUDE": "Latitudine",
+        "LONGITUDE": "Longitudine"
+    },
+    "CONF.ROLE": {
+        "KINDS": {
+            "PRINCIPAL.SINGULAR": "Preside",
+            "PRINCIPAL.PLURAL": "Presidi",
+            "MOBMAN.SINGULAR": "Mobility manager",
+            "MOBMAN.PLURAL": "Mobility manager"
+        },
+        "ENSUREUSER": {
+            "TITLE": "Aggiungi utente",
+            "EMAILMISSING": "Impostare EMail della scuola",
+            "ADDED": "Aggiunto: {{KIND}} - {{EMAIL}}",
+            "EXISTING": "Esistente: {{KIND}} - {{EMAIL}}"
+        },
+        "RESETPASSWORD": {
+            "CONFIRM1": "Ricreare password per: {{USERNAME}}",
+            "CONFIRM2": "Procedere a ricreare password per: {{USERNAME}}",    
+            "SUCCESS": "Inviata EMail per reimpostazione password a: {{EMAIL}}",
+            "ERROR": "Errore in reimpostazione password per: {{EMAIL}}"
+        },
+        "REMOVEUSER": {
+            "CONFIRM1": "Rimuovere da questa scuola: {{USERNAME}}",
+            "CONFIRM2": "Procedere con la rimozione da questa scuola di: {{USERNAME}}",
+            "SUCCESS": "Rimosso da questa scuola: {{USERNAME}}",
+            "ERROR": "Errore in rimozione da questa scuola di: {{USERNAME}}"
+        }
+    },
+    "CONF.CASCHOS": {
+        "MENUTITLE": "{{DEF.CASCHO.PLURAL}}",
+        "PAGETITLE": "{{DEF.CASCHO.PLURAL}}"
+    },
+    "CONF.CASCHO": {
+        "MENUTITLE": "{{DEF.CASCHO.SINGULAR}}",
+        "PAGETITLE": "{{DEF.CASCHO.SINGULAR}}"
+    },
+    "DASH": {
+        "MENUTITLE": "Cruscotto",
+        "PAGETITLE": "Cruscotto di monitoraggio delle campagne"
+    },
+    "DASH.CAMP": {
+        "PAGETITLE": "Dettaglio campagna di analisi: {{CAMPAIGN}}",
+        "BOXRECAP": {
+            "T01": "Viaggi totali attesi: ",
+            "T02": "Viaggi rilevati dalla campagna: ",
+            "T03": "Tasso di risposta: "
+        },
+        "BOXTEMPI": {
+            "T01": "Tempo medio di viaggio [Minuti]",
+            "T02": "Massimo rilevato",
+            "T03": "Minimo rilevato"
+        },
+        "BOXDISTANZE": {
+            "T01": "Distanza media per viaggio [Km]",
+            "T02": "Massimo rilevato",
+            "T03": "Minimo rilevato"
+        },
+        "MODALFILTRI": {
+            "SEGMENT01": "scuole",
+            "SEGMENT02": "modi di viaggio",
+            "SEGMENT03": "tipo viaggio",
+            "SEGMENTSUBTITLE": "Macro-classi considerate",
+            "BUTTON01": "Annulla",
+            "BUTTON02": "Ripristina predefiniti",
+            "BUTTON03": "APPLICA FILTRI",
+            "DIR1": "Andata",
+            "DIR2": "Ritorno"
+        },
+        "MAP": {
+            "MODALCLOSE": "CHIUDI",
+            "MODAL01": "Numero totale dei viaggi rilevati",
+            "MODAL02": "netid: ",
+            "MODAL03": "network id: "
+        },
+        "GRAPH": {
+            "DISTRIBDIST": {
+                "TITLE": "Distribuzione dei viaggi",
+                "SUBTITLE": "Analisi delle distanze e tempi di viaggio per tipologie di spostamento"
+            },
+            "VIAGGISCUOLE": {
+                "TITLE": "Viaggi per scuola",
+                "SUBTITLE": "Analisi di tutti i viaggi casa-scuola e scuola-casa"
+            },
+            "VIAGGISCUOLETEMPI": {
+                "TITLE": "Tempi medi di viaggio per scuola [min]",
+                "SUBTITLE": "Analisi di tutti i viaggi casa-scuola e scuola-casa",
+                "LEGENDA": "Tempi medi dei viaggio [min]"
+            },
+            "VIAGGISCUOLEDISTANZE": {
+                "TITLE": "Cumulata dei percorsi per scuola [Km]",
+                "SUBTITLE": "Analisi di tutti i viaggi casa-scuola e scuola-casa",
+                "LEGENDA": "Cumulata dei percorsi [Km]"
+            },
+            "VIAGGITORTAMODI": {
+                "TITLE": "Spostamenti per tipologia di Modo",
+                "SUBTITLE": "distribuzione dei modi per tratte dei viaggi (un viaggio può essere composto da piu tratte)",
+                "LEGENDA": "Lunghezza [Km]"
+            }
+        },
+        "BOXLEGENDA": {
+            "TITLE": "Legenda",
+            "ORIGINI": "Distribuzione delle origini",
+            "CARICHI": "Numero viaggi",
+            "SCUOLE": "Scuole"
+        }
+    }
+}

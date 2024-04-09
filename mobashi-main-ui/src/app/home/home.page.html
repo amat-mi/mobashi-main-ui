@@ -1,0 +1,184 @@
+<ng-template transloco let-fn="$implicit">
+  <ng-container *ngIf="selectedCity$ | async; let city">
+    <ion-header>
+      <ion-toolbar color="brand">
+        <ion-title>
+          {{city.name}}
+        </ion-title>
+
+        <ion-buttons slot="end">
+          <ng-container *ngIf="userdata$ | async as userdata;">
+            <ion-button routerLink="/conf" routerDirection="forward" *ngIf="userdata?.is_admin">
+              <ion-icon slot="icon-only" name="key"></ion-icon>
+            </ion-button>
+          </ng-container>
+
+          <ion-button routerLink="/settings" routerDirection="forward">
+            <ion-icon slot="icon-only" name="settings"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <!-- <img src="assets/wave_02.svg" /> -->
+      <ion-grid>
+        <ion-row>
+          <ion-col size="1"></ion-col>
+          <ion-col size="10">
+            <ion-row NOstyle="margin-top: -25%;" class="center-text">
+              <ion-col size-xs="12" size-sm="12" size-md="7" size-lg="6" size-xl="6">
+                <div>
+                  <img src="assets/i1.webp" />
+                </div>
+              </ion-col>
+              <ion-col size-xs="12" size-sm="12" size-md="5" size-lg="6" size-xl="6" class="center-text">
+                <div class="ion-text-center">
+
+                  <h1 class="ion-text-wrap titolo-home">"{{ tr.c(fn,'HOME.SLOGAN') }}"
+                  </h1>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="1"></ion-col>
+        </ion-row>
+      </ion-grid>
+
+
+
+      <!--
+      <ion-item lines="none">
+        <ion-thumbnail slot="start">
+          <img class="logoRectLittle" [src]="city.immagine_small.url" [width]="city.immagine_small.width"
+            [height]="city.immagine_small.height" *ngIf="city.immagine_small" />
+        </ion-thumbnail>
+
+        <ion-label>
+          <h1 class="ion-text-wrap">
+            {{ tr.c(fn,'HOME.SLOGAN') }}
+          </h1>
+        </ion-label>
+      </ion-item>
+-->
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ng-container *ngIf="dashes$ | async; let dashes">
+              <ion-accordion-group [multiple]="true">
+                <ion-accordion [value]="dash.id" toggle-icon-slot="start" *ngFor="let dash of dashes">
+                  <ion-item slot="header">
+                    <ion-label class="ion-text-wrap">
+                      <ion-grid>
+                        <ion-row>
+                          <ion-col size-md="6" size-xs="12">
+                            <h2>
+                              <ion-icon name="lock-closed" *ngIf="!dash?.is_active"></ion-icon>
+                              {{ dash?.name }}
+                            </h2>
+                            <div style="font-style:italic">
+                              <small>
+                                {{ dash?.stamp_start | date }} - {{ dash?.stamp_end | date }}
+                              </small>
+                            </div>
+                          </ion-col>
+
+                          <ion-col class="ion-text-end" size-md="2" size-xs="4">
+                            <small>
+                              {{ tr.c(fn,'DEF.SCHOOL.PLURAL') }}
+                            </small>
+                            <p>
+                              {{dash?.count}}
+                            </p>
+                          </ion-col>
+                          <ion-col class="ion-text-end" size-md="2" size-xs="4">
+                            <small>
+                              {{ tr.c(fn,'DEF.SURVEY.PLURAL') }}
+                            </small>
+                            <p>
+                              {{dash?.surveys}}
+                            </p>
+                          </ion-col>
+                          <ion-col class="ion-text-end" size-md="2" size-xs="4">
+                            <small>
+                              {{ tr.c(fn,'DEF.STUDENT.PLURAL') }}
+                            </small>
+                            <p>
+                              {{dash?.students}}
+                            </p>
+                          </ion-col>
+                        </ion-row>
+                      </ion-grid>
+                    </ion-label>
+                  </ion-item>
+
+                  <ion-list slot="content">
+                    <ion-item-divider lines="none" button="false" detail="false">
+                      <ion-button color="primary" fill="clear" slot="end" [disabled]="(dash?.surveys ?? 0) < 1"
+                        [routerLink]="['/dash/camp/',dash.uuid]" routerDirection="forward">
+                        <ion-icon slot="start" name="analytics"></ion-icon>
+                        {{ tr.c(fn,'DASH.MENUTITLE') }}
+                      </ion-button>
+                    </ion-item-divider>
+
+                    <ion-item lines="full" button="false" detail="false" *ngFor="let school of dash.schools">
+                      <ion-icon slot="start" name="school">
+                      </ion-icon>
+
+                      <ion-label>
+                        <ion-grid>
+                          <ion-row>
+                            <ion-col size-md="6" size-xs="12">
+                              <h4 *ngIf="school?.name">
+                                {{school?.name}}
+
+                                <small *ngIf="school?.code">
+                                  ({{school?.code}})
+                                </small>
+                              </h4>
+
+                              <h5 *ngIf="school?.address">
+                                {{school?.address}}
+                              </h5>
+                            </ion-col>
+
+                            <ion-col class="ion-text-end" size-md="2" offset-md="2" size-xs="4" offset-xs="4">
+                              <small>
+                                {{ tr.c(fn,'DEF.SURVEY.PLURAL') }}
+                              </small>
+                              <p>
+                                {{school?.surveys}}
+                              </p>
+                            </ion-col>
+                            <ion-col class="ion-text-end" size-md="2" size-xs="4">
+                              <small>
+                                {{ tr.c(fn,'DEF.STUDENT.PLURAL') }}
+                              </small>
+                              <p>
+                                {{school?.students}}
+                              </p>
+                            </ion-col>
+                          </ion-row>
+                        </ion-grid>
+                      </ion-label>
+                    </ion-item>
+                  </ion-list>
+                </ion-accordion>
+              </ion-accordion-group>
+            </ng-container>
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <div style="bottom:0;left:0;position:fixed;width: 100px;">
+        <img class="logoRectLittle" [src]="city.immagine_small.url" *ngIf="city.immagine_small" />
+      </div>
+
+    </ion-content>
+
+
+
+  </ng-container>
+
+</ng-template>

@@ -1,0 +1,53 @@
+<ng-template transloco let-fn="$implicit">
+  <ng-container *ngIf="perms$ | async as perms">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>
+          {{ tr.c(fn,'DEF.SCHOOL.PLURAL') }}
+        </ion-title>
+
+        <ion-buttons slot="end">
+          <ng-container *ngIf="schools$ | async; let schools">
+            <ion-button color="primary" (click)="viewSchools = schools; modalAdd.present()" *ngIf="perms?.add">
+              <ion-icon slot="icon-only" name="add-circle"></ion-icon>
+            </ion-button>
+          </ng-container>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+  </ng-container>
+
+  <ion-content>
+    <ion-modal #modalAdd>
+      <ng-template>
+        <app-school-search class="ion-page" [title]="tr.c(fn,'CONF.CAMPAIGN.ADDSCHOOLTITLE')" [objects]="viewSchools"
+          (objectSelected)="selected($event, campaign); modalAdd.dismiss()">
+        </app-school-search>
+      </ng-template>
+    </ion-modal>
+
+    <ion-modal #modalView>
+      <ng-template>
+        <app-cascho-view [object]="viewObject" (closed)="modalView.dismiss()">
+        </app-cascho-view>
+      </ng-template>
+    </ion-modal>
+
+    <ng-container *ngIf="objects$ | async; let objects">
+      <ion-list>
+        <ng-container *ngFor="let object of objects">
+          <ion-item button="true" detail="false" (click)="this.viewObject = object; modalView.present()"
+            *ngIf="object.perms?.view">
+            <ion-label class="ion-text-wrap">
+              {{ object.school_name }}
+            </ion-label>
+
+            <ion-button size="default" color="primary" fill="clear" slot="end" (click)="delete($event, object)">
+              <ion-icon name="remove-circle" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </ng-container>
+      </ion-list>
+    </ng-container>
+  </ion-content>
+</ng-template>

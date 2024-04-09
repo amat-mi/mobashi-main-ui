@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="brand">
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">
+        <ion-icon name="close" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>
+      {{ title }}
+    </ion-title>
+  </ion-toolbar>
+
+  <ion-toolbar>
+    <ion-searchbar enterkeyhint="search" inputmode="text" placeholder="" (ionInput)="searchbarInput($event)">
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item button="true" detail="false" (click)="selected(object)"
+      *ngFor="let object of filteredObjects; trackBy: track">
+      <ion-label class="ion-text-wrap">
+        {{ object.name }}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

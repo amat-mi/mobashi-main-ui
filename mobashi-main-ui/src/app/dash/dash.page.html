@@ -1,0 +1,70 @@
+<ng-template transloco let-fn="$implicit">
+  <ng-container *ngIf="dash$ | async; let dash">
+    <ion-header [translucent]="true">
+      <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+          <ion-menu-button menu="main"></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+          {{ tr.c(fn,'DASH.PAGETITLE') }}
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+
+      <!--
+  <ion-card style="height: 600px;">
+    <app-map idComp="dashMap_test001"></app-map>
+  </ion-card>
+-->
+      <ion-card>
+        <ion-card-content>
+          <ion-list>
+            <ion-item button detail="true" [routerLink]="['./camp/',dash?.uuid]" routerDirection="forward">
+              <ion-icon slot="start" name="flame" color="warning"></ion-icon>
+              <ion-label class="ion-text-wrap">
+                <h2>{{ dash?.name }}</h2>
+                <ion-text style="font-style:italic" color="light">
+                  <h5>dal {{ dash?.stamp_start | date : 'longDate'}} al {{ dash?.stamp_end | date : 'longDate'
+                    }}
+                  </h5>
+                </ion-text>
+              </ion-label>
+              <ion-badge slot="end" color="secondary">
+                Istituti coinvolti: {{ dash?.count }}
+              </ion-badge>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>
+          <ion-item>
+            <ion-label>
+              <ion-card-title>Istituti di competenza</ion-card-title>
+              <ion-card-subtitle>Dettaglio degli istituti di competenza</ion-card-subtitle>
+            </ion-label>
+            <ion-icon slot="end" name="school"></ion-icon>
+          </ion-item>
+
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-list>
+            <ion-item *ngFor="let school of dash?.schools ?? []; let s = index">
+              <ion-label class="ion-text-wrap">
+                <ion-text>{{ school?.name }} </ion-text>
+                <ion-text> {{ school?.address }} </ion-text>
+                <ion-text *ngIf="school?.code">
+                  <h5>( {{ school?.code }} )</h5>
+                </ion-text>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </ion-content>
+  </ng-container>
+</ng-template>

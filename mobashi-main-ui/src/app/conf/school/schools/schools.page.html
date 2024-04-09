@@ -1,0 +1,57 @@
+<ng-template transloco let-fn="$implicit">
+  <ng-container *ngIf="perms$ | async as perms">
+    <ion-header>
+      <ion-toolbar color="brand">
+        <ion-buttons slot="start">
+          <ion-menu-button menu="conf"></ion-menu-button>
+        </ion-buttons>
+
+        <ion-title>
+          {{ tr.c(fn,'CONF.SCHOOLS.PAGETITLE') }}
+        </ion-title>
+
+        <ion-buttons slot="end">
+          <ion-button [routerLink]="[0]" routerDirection="forward" *ngIf="perms?.add">
+            <ion-icon slot="icon-only" name="add"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+  </ng-container>
+
+  <ion-content>
+    <ng-container *ngIf="schools$ | async; let schools">
+      <ion-list>
+        <ng-container *ngFor="let school of schools">
+          <ion-item button="true" [routerLink]="[school?.id]" routerDirection="forward">
+            <ion-label class="ion-text-wrap">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size-md="6" size-xs="12">
+                    <h4 *ngIf="school?.name">
+                      {{school?.name}}
+
+                      <small *ngIf="school?.code">
+                        ({{school?.code}})
+                      </small>
+                    </h4>
+
+                    <h5 *ngIf="school?.address">
+                      {{school?.address}}
+                    </h5>
+                  </ion-col>
+
+                  <ion-col size-md="6" size-xs="12">
+                    <h4>
+                      {{ tr.c(fn,'DEF.STUDENT.PLURAL') }}: {{school?.students}}
+                    </h4>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-label>
+          </ion-item>
+        </ng-container>
+      </ion-list>
+    </ng-container>
+  </ion-content>
+</ng-template>

@@ -1,0 +1,95 @@
+<ng-template transloco let-fn="$implicit">
+  <ion-header>
+    <ion-toolbar color="brand">
+      <ion-buttons slot="start">
+        <ion-menu-button menu="conf"></ion-menu-button>
+      </ion-buttons>
+
+      <ion-title>
+        {{ tr.c(fn,'CONF.CASCHO.PAGETITLE') }}
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ng-container *ngIf="object$ | async; let object">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title size="small">
+            <ion-icon name="lock-closed" *ngIf="!object?.is_active"></ion-icon>
+            {{ object?.name }}
+          </ion-title>
+
+          <ion-buttons slot="end">
+            <ion-button color="primary" fill="clear" slot="end" (click)="delete(object)"
+              *ngIf="object?.perms?.delete && !!object?.id">
+              <ion-icon slot="icon-only" name="trash"></ion-icon>
+            </ion-button>
+
+            <ion-button color="primary" fill="clear" slot="end" (click)="editing = !editing"
+              *ngIf="object?.perms?.change">
+              <ion-icon slot="icon-only" name="pencil"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <app-edit-form #form [object]="object" [disabled]="!editing" (status)="onStatus($event)">
+        <ion-item style="display: none;">
+          <ion-input type="text" name="campaign" [(ngModel)]="form.data.campaign"
+            [label]="tr.c(fn,'DEF.CAMPAIGN.SINGULAR')" labelPlacement="stacked" required></ion-input>
+        </ion-item>
+
+        <ng-container *ngIf="campaigns$ | async; let campaigns">
+          <ion-item>
+            <ion-select label="Campaign" placeholder="Choose a Campaign" [value]="form.data.campaign"
+              (ionChange)="selectedCampaign($event, form)">
+              <ion-select-option [value]="campaign.id" *ngFor="let campaign of campaigns">
+                {{ campaign.name }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ng-container>
+
+        <ion-item style="display: none;">
+          <ion-input type="text" name="school" [(ngModel)]="form.data.school" [label]="tr.c(fn,'DEF.SCHOOL.SINGULAR')"
+            labelPlacement="stacked" required></ion-input>
+        </ion-item>
+
+        <ng-container *ngIf="schools$ | async; let schools">
+          <ion-item>
+            <ion-select label="School" placeholder="Choose a School" [value]="form.data.school"
+              (ionChange)="selectedSchool($event, form)">
+              <ion-select-option [value]="school.id" *ngFor="let school of schools">
+                {{ school.name }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ng-container>
+
+        <ion-button type="submit" *ngIf="editing" [disabled]="!form.form.valid || !modified"
+          (click)="form.save(); save(object)">
+          {{ tr.c(fn,'DEF.SAVE') }}
+        </ion-button>
+
+        <ion-button type="submit" *ngIf="editing" [disabled]="!modified" (click)="form.undo(); undo(object)">
+          {{ tr.c(fn,'DEF.UNDO') }}
+        </ion-button>
+      </app-edit-form>
+
+      <ion-item *ngIf="!!object.qrcode">
+        <ion-thumbnail slot="start">
+          <img [src]="object.qrcode.img" />
+        </ion-thumbnail>
+
+        <ion-label class="ion-text-wrap">
+          <small>
+            {{ object.qrcode.url }}
+          </small>
+        </ion-label>
+
+        <ion-icon name="clipboard" slot="end"></ion-icon>
+      </ion-item>
+    </ng-container>
+  </ion-content>
+</ng-template>

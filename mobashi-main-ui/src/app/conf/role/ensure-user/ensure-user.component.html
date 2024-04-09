@@ -1,0 +1,48 @@
+<ng-template transloco let-fn="$implicit">
+  <ion-header>
+    <ion-toolbar color="brand">
+      <ion-buttons slot="start">
+        <ion-button (click)="cancel()">
+          <ion-icon name="close" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+
+      <ion-title>
+        {{tr.c(fn,'CONF.ROLE.ENSUREUSER.TITLE')}}
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <form #form="ngForm">
+    <ion-list lines="none">
+      <ion-radio-group id="kind" name="kind" [(ngModel)]="data.kind" required>
+        <ion-item lines="none" button="true" detail="false">
+          <ion-radio value="principal" labelPlacement="end">
+            {{tr.c(fn,'CONF.ROLE.KINDS.PRINCIPAL.SINGULAR')}}
+          </ion-radio>
+        </ion-item>
+
+        <ion-item lines="none" button="true" detail="false">
+          <ion-radio value="mobman" labelPlacement="end">
+            {{tr.c(fn,'CONF.ROLE.KINDS.MOBMAN.SINGULAR')}}
+          </ion-radio>
+        </ion-item>
+      </ion-radio-group>
+
+      <ion-item>
+        <ion-label *ngIf="!data.email">
+          {{tr.c(fn,'CONF.ROLE.ENSUREUSER.EMAILMISSING')}}
+        </ion-label>
+
+        <ion-input autofocus="false" [(ngModel)]="data.email" name="email" type="email" inputmode="email" required
+          [label]="tr.c(fn,'DEF.EMAIL')" labelPlacement="fixed" autocomplete="email" disabled *ngIf="!!data.email">
+        </ion-input>
+      </ion-item>
+
+      <ion-button expand="block" size="large" class="ion-margin" [disabled]="!form.valid || !data.email"
+        (click)="execute()">
+        {{ tr.c(fn,'DEF.EXECUTE') }}
+      </ion-button>
+    </ion-list>
+  </form>
+</ng-template>

@@ -1,0 +1,127 @@
+<div [id]="idComp" style="width: 100%; height: 100%;"></div>
+<div class="legend" id="legend">
+    <ion-list>
+        <ng-container *ngFor="let l of legenda; let i = index">
+            <ion-item button (click)="nascondi(l)" lines="none">
+                <ion-icon [style]="'background-color:'+l.colore+';color:#fff;'" slot="start" [name]="l.icon"></ion-icon>
+                <ion-label [color]="l.visibile ? 'primary' : 'light'">{{ l.classe }}
+                    <ng-container *ngIf="l.step !== undefined">
+                        <ng-container *ngFor="let s of l.step; let i = index">
+                            <h6 [style]="'border-left:solid 15px '+ s.colore +';padding-left:10px;'">
+                                {{ s.val }}
+                            </h6>
+                        </ng-container>
+                    </ng-container>
+                </ion-label>
+            </ion-item>
+        </ng-container>
+    </ion-list>
+</div>
+<div class="info_bottom">
+    <ion-grid>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+            <ion-col>
+                <ion-text> {{ testInfo }} </ion-text>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</div>
+
+<ion-modal [isOpen]="isModalOpen"  (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+        <ion-header>
+            <ion-toolbar>
+                <ion-buttons slot="start">
+                    <ion-button color="primary" (click)="cancel()">{{ trLocali.modalClose }} </ion-button>
+                </ion-buttons>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+            <ng-container *ngIf="detailTextBoxAll">
+
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <ion-item>
+                                <ion-label class="ion-text-wrap">
+                                    <ion-text style="font-size:1.5em">
+                                        {{ trLocali.modal01 }}
+                                    </ion-text>
+                                    <p>
+                                        <ion-text style="font-size:1em">{{ trLocali.modal02 }} {{ detailTextBoxAll.netid
+                                            }}</ion-text>
+                                    </p>
+                                    <p>
+                                        <ion-text style="font-size:1em">{{ trLocali.modal03 }} {{
+                                            detailTextBoxAll.network_id }}</ion-text>
+                                    </p>
+                                </ion-label>
+                                <ion-badge slot="end"><ion-text style="font-size:3em">
+                                        {{ detailTextBoxAll.flow | number:'1.0-0' }}
+                                    </ion-text></ion-badge>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                            <ng-container *ngFor="let s of detailTextBoxAll.data let i = index">
+                                <ion-item>
+                                    <ion-label class="ion-text-wrap">
+                                        <ion-text color="primary" style="font-size:1em">
+                                            {{ s.school_id }}
+                                        </ion-text>
+                                    </ion-label>
+                                </ion-item>
+                                <div style="margin-left: 25px;;">
+                                    <ng-container *ngFor="let d of s.data let i = index">
+                                        <ion-item>
+                                            <ion-label class="ion-text-wrap">
+                                                <ion-text style="font-size:1em">{{ d.dir }} | {{ d.mode }}</ion-text>
+                                            </ion-label>
+                                            <ion-badge slot="end" color="secondary"><ion-text style="font-size:1em">
+                                                    {{ d.flow | number:'1.0-0' }}
+                                                </ion-text></ion-badge>
+                                        </ion-item>
+
+                                    </ng-container>
+                                </div>
+                            </ng-container>
+
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+
+
+
+
+                <!--
+                <ng-container *ngFor="let s of detailTextBoxAll.data let i = index">
+                    <ion-item>
+                        <ion-label class="ion-text-wrap">
+                            <ion-text style="font-size:1.5em" color="primary">{{ s.school_id }}</ion-text>
+                            <p><ion-text style="font-size:1em" >{{ s.dir }} | {{ s.mode }}</ion-text></p>
+                        </ion-label>
+                        <ion-badge slot="end"><ion-text style="font-size:1em">
+                            {{ s.flow | number:'1.0-0' }}
+                        </ion-text></ion-badge>
+                    </ion-item>
+                </ng-container>
+-->
+
+            </ng-container>
+
+
+            <!--
+                <ion-item>
+
+            <ng-container *ngFor="let s of detailTextBoxAll; let i = index">
+                <ion-item>
+                    <ion-label class="ion-text-wrap">
+                        {{ s.key }} :<ion-text color="primary">{{ s.val }}</ion-text>
+                    </ion-label>
+                </ion-item>
+            </ng-container>
+            -->
+        </ion-content>
+    </ng-template>
+</ion-modal>

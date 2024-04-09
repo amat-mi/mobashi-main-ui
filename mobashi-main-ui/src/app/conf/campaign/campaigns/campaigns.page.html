@@ -1,0 +1,55 @@
+<ng-template transloco let-fn="$implicit">
+  <ng-container *ngIf="perms$ | async as perms">
+    <ion-header>
+      <ion-toolbar color="brand">
+        <ion-buttons slot="start">
+          <ion-menu-button menu="conf"></ion-menu-button>
+        </ion-buttons>
+
+        <ion-title>
+          {{ tr.c(fn,'CONF.CAMPAIGNS.PAGETITLE') }}
+        </ion-title>
+
+        <ion-buttons slot="end">
+          <ion-button [routerLink]="[0]" routerDirection="forward" *ngIf="perms?.add">
+            <ion-icon slot="icon-only" name="add"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+  </ng-container>
+
+  <ion-content>
+    <ng-container *ngIf="objects$ | async; let objects">
+      <ion-list>
+        <ng-container *ngFor="let object of objects">
+          <ion-item button="true" [routerLink]="[object.id]" routerDirection="forward" *ngIf="object.perms?.view">
+            <ion-label class="ion-text-wrap">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size-md="6" size-xs="12">
+                    <h2>
+                      <ion-icon name="lock-closed" *ngIf="!object.is_active"></ion-icon>
+                      {{ object.name }}
+                    </h2>
+                    <div style="font-style:italic">
+                      <small>
+                        {{ object.stamp_start | date }} - {{ object.stamp_end | date }}
+                      </small>
+                    </div>
+                  </ion-col>
+
+                  <ion-col size-md="6" size-xs="12">
+                    <h4>
+                      {{ tr.c(fn,'CONF.CAMPAIGN.STATES.' + object.status + '.SINGULAR') }}
+                    </h4>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-label>
+          </ion-item>
+        </ng-container>
+      </ion-list>
+    </ng-container>
+  </ion-content>
+</ng-template>

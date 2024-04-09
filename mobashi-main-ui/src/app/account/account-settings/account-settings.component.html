@@ -1,0 +1,28 @@
+<ng-template transloco let-fn="$implicit">
+    <ion-card>
+      <ion-card-header traslucent="true">
+        <ion-card-title>{{ tr.c(fn,'ACCOUNT.SETTINGS.TITLE') }}</ion-card-title>
+      </ion-card-header>
+      <hr class="separatore">
+      <ion-card-content>
+        <ion-list>
+          <ng-container *ngIf="userdata$ | async as userdata;">
+            <ion-item lines="none">
+              <ion-icon slot="start" name="person"></ion-icon>
+              <ion-label>{{ tr.c(fn,'ACCOUNT.USERNAME') }}</ion-label>
+              <ion-text>{{userdata.username}}</ion-text>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-icon slot="start" name="mail"></ion-icon>
+              <ion-label>{{ tr.c(fn,'ACCOUNT.EMAIL') }}</ion-label>
+              <ion-text>{{userdata.email}}</ion-text>
+            </ion-item>
+            <ion-button color="danger" expand="block" (click)="logout()">
+              <ion-icon slot="start" name="exit"></ion-icon>
+              {{ tr.c(fn,'ACCOUNT.LOGOUT') }}
+            </ion-button>
+          </ng-container>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>

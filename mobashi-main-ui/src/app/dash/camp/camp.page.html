@@ -1,0 +1,391 @@
+<!--
+
+<br><br>
+
+<ng-container *ngIf="dataSchool$ | async; let ds">
+  {{ ds | json  }}
+</ng-container>
+-->
+
+<ng-template transloco let-fn="$implicit">
+  <ng-container *ngIf="dataSetAll$ | async; let dAll">
+    <ng-container *ngIf="dash$ | async; let dash">
+      <ng-container>
+        <ion-header>
+          <ion-toolbar color="brand">
+            <ion-buttons slot="start">
+              <ion-back-button text="" defaultHref="/home"></ion-back-button>
+            </ion-buttons>
+
+            <ion-title>
+              {{ tr.c(fn,'DASH.CAMP.PAGETITLE') }}
+              {{ dash?.name }}
+              <div style="font-style:italic">
+                <small>
+                  {{ dash?.stamp_start | date }} - {{ dash?.stamp_end | date }}
+                </small>
+              </div>
+            </ion-title>
+
+            <ion-buttons slot="end">
+              <ion-button id="open-modal-add" slot="end">
+                <ion-icon slot="icon-only" name="filter"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+
+
+
+
+        </ion-header>
+
+
+        <ion-content [fullscreen]="true">
+
+
+
+          <ion-grid>
+            <ion-row class="ion-align-items-center ion-justify-content-center">
+              <ion-col size="12">
+                <ion-card style="height: 500px;">
+                  <app-map [idComp]="'dashMap_'+dash?.uuid" [layers]="layers" [cchange]="cchange"></app-map>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+
+
+            <ion-row class="ion-align-items-top ion-justify-content-center">
+
+              <ion-col size="5">
+                <ion-col size="12">
+                  <ion-card>
+                    <ion-card-header>
+                      <ion-item>
+                        <ion-icon slot="start" name="calendar"></ion-icon>
+                        <ion-label>
+                          <ion-card-title>{{ dash?.name }}</ion-card-title>
+                          <ion-card-subtitle>
+                            <ion-text style="font-style:italic">
+                              <h5>dal {{ dash?.stamp_start | date : 'longDate'}}
+                                al {{ dash?.stamp_end | date : 'longDate' }}
+                              </h5>
+                            </ion-text>
+                          </ion-card-subtitle>
+                        </ion-label>
+                      </ion-item>
+                    </ion-card-header>
+
+                    <ion-card-content>
+                      <ion-grid>
+                        <ion-row class="ion-align-items-center ion-justify-content-center">
+
+                          <ion-col>
+
+                            <ion-item>
+                              <ion-label class="ion-text-wrap">
+                                <ion-text>Studenti: </ion-text>
+                              </ion-label>
+                              <ion-badge slot="end"><ion-text class="testoEvidenziato">{{
+                                  indiciDashboard.totaleStudenti |
+                                  number:'1.0-0'
+                                  }}</ion-text></ion-badge>
+                            </ion-item>
+
+
+                            <ion-item>
+                              <ion-label class="ion-text-wrap">
+                                <ion-text>{{ tr.c(fn,'DASH.CAMP.BOXRECAP.T01') }}</ion-text>
+                              </ion-label>
+                              <ion-badge slot="end"><ion-text class="testoEvidenziato">{{
+                                  indiciDashboard.totaleViaggiAttesi
+                                  |
+                                  number:'1.0-0'
+                                  }}</ion-text></ion-badge>
+                            </ion-item>
+
+                            <ion-item>
+                              <ion-label class="ion-text-wrap">
+                                <ion-text>{{ tr.c(fn,'DASH.CAMP.BOXRECAP.T02') }}</ion-text>
+                              </ion-label>
+                              <ion-badge slot="end"><ion-text class="testoEvidenziato">{{
+                                  indiciDashboard.totaleIntervisteEffettuate |
+                                  number:'1.0-0'
+                                  }}</ion-text></ion-badge>
+                            </ion-item>
+
+                            <ion-item>
+                              <ion-label class="ion-text-wrap">
+                                <ion-text>{{ tr.c(fn,'DASH.CAMP.BOXRECAP.T03') }}</ion-text>
+                              </ion-label>
+                              <ion-badge slot="end">
+                                <ion-text class="testoEvidenziato">{{ indiciDashboard.rapportViaggiRilevati |
+                                  number:'1.1-1'
+                                  }}%
+                                </ion-text></ion-badge>
+                            </ion-item>
+
+
+
+                            <!--
+                          <ion-item>
+                            <ion-label class="ion-text-wrap">
+                              <ion-text>Viaggi rilevati: </ion-text>
+                            </ion-label>
+                            <ion-badge slot="end"><ion-text style="font-size:2em">{{
+                                indiciDashboard.totaleViaggiRilevati |
+                                number:'1.0-0'
+                                }}</ion-text></ion-badge>
+                          </ion-item>
+                        
+                          <ion-item>
+                            <ion-label class="ion-text-wrap">
+                              <ion-text>Viaggi di andata (casa-scuola): </ion-text>
+                            </ion-label>
+                            <ion-badge slot="end"><ion-text style="font-size:2em">{{
+                                indiciDashboard.totaleViaggiRilevatiAndata |
+                                number:'1.0-0'
+                                }}</ion-text></ion-badge>
+                          </ion-item>
+
+                          <ion-item>
+                            <ion-label class="ion-text-wrap">
+                              <ion-text>Viaggi di ritorno (scuola-casa): </ion-text>
+                            </ion-label>
+                            <ion-badge slot="end"><ion-text style="font-size:2em">{{
+                                indiciDashboard.totaleViaggiRilevatiRitorno |
+                                number:'1.0-0'
+                                }}</ion-text></ion-badge>
+                          </ion-item>
+
+                          -->
+                          </ion-col>
+
+
+                        </ion-row>
+                      </ion-grid>
+                    </ion-card-content>
+                  </ion-card>
+
+                </ion-col>
+                <ion-col size="12">
+                  <app-chart [idComp]="'distribuzioneModoFlow_'+dash?.uuid" [grafici]="grafici.tortaModi"
+                    [altezza]="'height: 400px;'"></app-chart>
+
+                </ion-col>
+
+              </ion-col>
+
+              <ion-col size="7">
+                <ion-col size="12">
+                  <app-chart [idComp]="'distribuzioneScuoleFlow_'+dash?.uuid" [grafici]="grafici.tortaScuole"
+                    [altezza]="'height: 500px;'"></app-chart>
+
+                </ion-col>
+                <ion-col size="12">
+                  <app-chart [idComp]="'distribuzioneDirezioni_'+dash?.uuid" [grafici]="grafici.barreScuoleDirezione"
+                    [altezza]="'height: 200px;'"></app-chart>
+
+
+
+                </ion-col>
+              </ion-col>
+
+
+
+              <ion-col size="12">
+                <app-chart [idComp]="'distribuzioneScuoleDist_'+dash?.uuid"
+                  [grafici]="grafici.distribuzioneScuoleDist_01" [altezza]="'height: 400px;'"></app-chart>
+              </ion-col>
+
+
+
+            </ion-row>
+
+
+            <ion-row class="ion-align-items-center ion-justify-content-center">
+              <ion-col size="6">
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-card>
+                      <ion-card-content>
+                        <ion-grid>
+                          <ion-row class="ion-align-items-center ion-justify-content-center">
+                            <ion-col>
+                              <ion-item>
+                                <ion-label class="ion-text-wrap">
+                                  <ion-text style="font-size:1.5em">{{ tr.c(fn,'DASH.CAMP.BOXTEMPI.T01') }} </ion-text>
+                                </ion-label>
+                                <ion-badge slot="end"><ion-text style="font-size:3em">{{ indiciDashboard.viaggiTempiMedi
+                                    |
+                                    number:'1.0-1'
+                                    }}</ion-text></ion-badge>
+                              </ion-item>
+                              <ion-item>
+                                <ion-label class="ion-text-wrap">
+                                  <ion-text>{{ tr.c(fn,'DASH.CAMP.BOXTEMPI.T02') }}</ion-text>
+                                </ion-label>
+                                <ion-badge slot="end"><ion-text style="font-size:2em">{{ indiciDashboard.viaggiTempiMax
+                                    |
+                                    number:'1.0-1'
+                                    }}</ion-text></ion-badge>
+                              </ion-item>
+                              <ion-item>
+                                <ion-label class="ion-text-wrap">
+                                  <ion-text>{{ tr.c(fn,'DASH.CAMP.BOXTEMPI.T03') }}</ion-text>
+                                </ion-label>
+                                <ion-badge slot="end"><ion-text style="font-size:2em">{{ indiciDashboard.viaggiTempiMin
+                                    |
+                                    number:'1.0-2'
+                                    }}</ion-text></ion-badge>
+                              </ion-item>
+                            </ion-col>
+                          </ion-row>
+                        </ion-grid>
+                      </ion-card-content>
+                    </ion-card>
+                  </ion-col>
+
+                  <ion-col size="12">
+                    <app-chart [idComp]="'distribuzioneScuoleTempi_'+dash?.uuid" [grafici]="grafici.barreScuoleTempi"
+                      [altezza]="'height: 400px;'"></app-chart>
+
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              <ion-col size="6">
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-card>
+                      <ion-card-content>
+                        <ion-grid>
+                          <ion-row class="ion-align-items-center ion-justify-content-center">
+
+                            <ion-col>
+                              <ion-item>
+                                <ion-label class="ion-text-wrap">
+                                  <ion-text style="font-size:1.5em">
+                                    {{ tr.c(fn,'DASH.CAMP.BOXDISTANZE.T01') }}
+                                  </ion-text>
+                                </ion-label>
+                                <ion-badge slot="end"><ion-text style="font-size:3em">{{
+                                    indiciDashboard.viaggiDistanzaMedi
+                                    |
+                                    number:'1.1-2'
+                                    }}
+
+                                  </ion-text></ion-badge>
+                              </ion-item>
+                              <ion-item>
+                                <ion-label class="ion-text-wrap">
+                                  <ion-text>{{ tr.c(fn,'DASH.CAMP.BOXDISTANZE.T02') }}</ion-text>
+                                </ion-label>
+                                <ion-badge slot="end"><ion-text style="font-size:2em">{{
+                                    indiciDashboard.viaggiDistanzaMax |
+                                    number:'1.0-1'
+                                    }}</ion-text></ion-badge>
+                              </ion-item>
+                              <ion-item>
+                                <ion-label class="ion-text-wrap">
+                                  <ion-text>{{ tr.c(fn,'DASH.CAMP.BOXDISTANZE.T03') }}</ion-text>
+                                </ion-label>
+                                <ion-badge slot="end"><ion-text style="font-size:2em">{{
+                                    indiciDashboard.viaggiDistanzaMin |
+                                    number:'1.2-2'
+                                    }}</ion-text></ion-badge>
+                              </ion-item>
+                            </ion-col>
+
+                          </ion-row>
+                        </ion-grid>
+                      </ion-card-content>
+                    </ion-card>
+                  </ion-col>
+                  <ion-col size="12">
+                    <app-chart [idComp]="'distribuzioneScuoleKm_'+dash?.uuid" [grafici]="grafici.barreScuoleKm"
+                      [altezza]="'height: 400px;'"></app-chart>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <br>
+                <br>
+              </ion-col>
+            </ion-row>
+          </ion-grid>          <ion-modal class="modalFiltri" trigger="open-modal-add" (willDismiss)="onWillDismissFiltri($event)">
+            <ng-template>
+              <ion-header>
+                <ion-toolbar>
+                  <ion-buttons slot="start">
+                    <ion-button 
+                    color="primary"
+                    (click)="closeModalFiltri()">{{ tr.c(fn,'DASH.CAMP.MODALFILTRI.BUTTON01')
+                      }}</ion-button>
+                  </ion-buttons>
+                  <ion-buttons slot="end">
+                    <ion-button
+                    color="primary"
+                    (click)="resetFilter()" fill="clear" [strong]="true">{{
+                      tr.c(fn,'DASH.CAMP.MODALFILTRI.BUTTON02') }}</ion-button>
+                  </ion-buttons>
+                </ion-toolbar>
+                <ion-toolbar>
+                  <ion-segment [(ngModel)]="defaultSeg">
+                    <ng-container *ngFor="let f of filtersTemp; let i = index">
+                      <ion-segment-button [value]="f.filtersSeg">
+                        <ion-label>{{ f.filtersSeg }}</ion-label>
+                      </ion-segment-button>
+                    </ng-container>
+                  </ion-segment>
+                </ion-toolbar>
+              </ion-header>
+              <ion-content class="ion-padding">
+                <ng-container *ngFor="let f of filtersTemp; let i = index">
+                  <ng-container *ngIf="defaultSeg===f.filtersSeg">
+                    <ion-item>
+                      <ion-label color="primary">
+                        {{ tr.c(fn,'DASH.CAMP.MODALFILTRI.SEGMENTSUBTITLE') }}
+                      </ion-label>
+                      <ion-buttons slot="end">
+                        <ion-button slot="end" size="small" fill="clear" (click)="resetClassAll(f.filtersSeg, true)">
+                          <ion-icon slot="icon-only" color="primary" name="eye"></ion-icon>
+                        </ion-button>
+                        <ion-button slot="end" size="small" fill="clear" (click)="resetClassAll(f.filtersSeg, false)">
+                          <ion-icon slot="icon-only" color="primary" name="eye-off"></ion-icon>
+                        </ion-button>
+                      </ion-buttons>
+                    </ion-item>
+                    <ng-container *ngFor="let v of f.filtersClass; let i = index">
+                      <ng-container *ngIf="v.visible">
+                        <ion-item>
+                          <!--
+                          <ion-label>
+                            {{ v.title }}
+                          </ion-label>
+                          -->
+                          <ion-toggle  aria-label="Primary toggle" [(ngModel)]="v.selected"
+                            label="Floating label" labelPlacement="floating" placeholder="Enter text">
+                            {{ v.title }}
+                          </ion-toggle>
+
+
+                        </ion-item>
+                      </ng-container>
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
+              </ion-content>
+              <ion-footer>
+                <ion-toolbar>
+                  <ion-button expand="full" (click)="applicaFiltri()">{{ tr.c(fn,'DASH.CAMP.MODALFILTRI.BUTTON03')
+                    }}</ion-button>
+                </ion-toolbar>
+              </ion-footer>
+            </ng-template>
+          </ion-modal>
+        </ion-content>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</ng-template>

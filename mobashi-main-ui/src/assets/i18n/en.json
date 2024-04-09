@@ -1,0 +1,247 @@
+{
+    "DEF": {
+        "DONE": "Done",
+        "CANCEL": "Cancel",
+        "ABANDON": "Abandon",
+        "YES": "Yes",
+        "NO": "No",
+        "OK": "OK",
+        "VIEW": "View",
+        "IGNORE": "Ignore",
+        "UNDO": "Cancel",
+        "LANG": "Language",
+        "LOGIN": "Login",
+        "LOGOUT": "Logout",
+        "EXECUTE": "Execute",
+        "ERROR": "Error",
+        "SAVE": "Save",
+        "SEARCH": "Search",
+        "COPY": "Copy",
+        "COPIED": "Copied",
+        "CONFIRM": "Confirm",
+        "CONFIRM_ASK": "Do you Confirm?",
+        "EMAIL": "EMail",
+        "USER.SINGULAR": "User",
+        "USER.PLURAL": "Users",
+        "CAMPAIGN.SINGULAR": "Campaign",
+        "CAMPAIGN.PLURAL": "Campaigns",
+        "SCHOOL.SINGULAR": "School",
+        "SCHOOL.PLURAL": "Schools",
+        "ROLE.SINGULAR": "Role",
+        "ROLE.PLURAL": "Roles",
+        "CASCHO.SINGULAR": "Cascho",
+        "CASCHO.PLURAL": "Caschos",
+        "SURVEY.SINGULAR": "Survey",
+        "SURVEY.PLURAL": "Surveys",
+        "STUDENT.SINGULAR": "Student",
+        "STUDENT.PLURAL": "Students"
+    },
+    "ERROR": {
+        "AUTH.INVALIDLOGIN": "Invalid login"
+    },
+    "SUCCESS": {
+        "AUTH.VALIDLOGIN": "Successful login"
+    },
+    "LOGIN": {
+        "PAGETITLE": "Login",
+        "USERNAME": "Username or access key",
+        "PASSWORD": "Password or access key",
+        "LOGIN": "Login"
+    },
+    "REGISTER": {
+        "PAGETITLE": "Registration",
+        "USERNAME": "Username",
+        "PASSWORD": "Password",
+        "PASSWORD2": "Password confirmation",
+        "EMAIL": "{{DEF.EMAIL}}",
+        "REGISTER": "Register"
+    },
+    "PASSWORDRESET": {
+        "PAGETITLE": "Password reset",
+        "PASSWORD": "Password",
+        "PASSWORD2": "Password confirmation",
+        "EXECUTE": "Reset password"
+    },
+    "LANG": {
+        "OVERVIEW.LABEL": "Language",
+        "SETTINGS.LABEL": "{{LANG.OVERVIEW.LABEL}}"
+    },
+    "THEME": {
+        "NAMES": {
+            "AUTO": "Automatic",
+            "LIGHT": "Light",
+            "DARK": "Dark"
+        },
+        "OVERVIEW.LABEL": "Theme",
+        "SETTINGS.LABEL": "{{THEME.OVERVIEW.LABEL}}"
+    },
+    "SETTINGS": {
+        "SINGULAR": "Setting",
+        "PLURAL": "Settings",
+        "MENUTITLE": "{{SETTINGS.PLURAL}}",
+        "PAGETITLE": "{{SETTINGS.PLURAL}}",
+        "USER": "User",
+        "LOGOUT": "Logout",
+        "OVERVIEW.TITLE": "SETTINGS"
+    },
+    "ACCOUNT": {
+        "USERNAME": "Username",
+        "EMAIL": "{{DEF.EMAIL}}",
+        "LOGOUT": "Logout",
+        "SETTINGS.TITLE": "PROFILE"
+    },
+    "HOME": {
+        "MENUTITLE": "Summary",
+        "PAGETITLE": "{{HOME.MENUTITLE}}",
+        "SLOGAN": "Analysis of travel preferences",
+        "CAMPAIGNS": "{{DEF.CAMPAIGN.PLURAL}}",
+        "SCHOOLS": "{{DEF.SCHOOL.PLURAL}}"
+    },
+    "CONF": {
+        "MENUTITLE": "Configuration",
+        "PAGETITLE": "Configuration",
+        "DELETE1": "Delete: {{OBJECT}}",
+        "DELETE2": "Proceed with the deletion of: {{OBJECT}}"
+    },
+    "CONF.CAMPAIGNS": {
+        "MENUTITLE": "{{DEF.CAMPAIGN.PLURAL}}",
+        "PAGETITLE": "{{DEF.CAMPAIGN.PLURAL}}"
+    },
+    "CONF.CAMPAIGN": {
+        "MENUTITLE": "{{DEF.CAMPAIGN.SINGULAR}}",
+        "PAGETITLE": "{{DEF.CAMPAIGN.SINGULAR}}",
+        "NAME": "Name",
+        "STAMP_START": "Begins",
+        "STAMP_END": "Ends",
+        "ADDSCHOOLTITLE": "Add school",
+        "STATES": {
+            "-100.SINGULAR": "Disabled",
+            "-100.PLURAL": "Disabled",
+            "0.SINGULAR": "Active",
+            "0.PLURAL": "Active",
+            "50.SINGULAR": "Not started",
+            "50.PLURAL": "Not started",
+            "100.SINGULAR": "Terminated",
+            "100.PLURAL": "Terminated"
+        }
+    },
+    "CONF.SCHOOLS": {
+        "MENUTITLE": "{{DEF.SCHOOL.PLURAL}}",
+        "PAGETITLE": "{{DEF.SCHOOL.PLURAL}}"
+    },
+    "CONF.SCHOOL": {
+        "MENUTITLE": "{{DEF.SCHOOL.SINGULAR}}",
+        "PAGETITLE": "{{DEF.SCHOOL.SINGULAR}}",
+        "NAME": "Name",
+        "CODE": "Code",
+        "EMAIL": "{{DEF.EMAIL}}",
+        "STUDENTS": "Students",
+        "ADDRESS": "Address",
+        "LATITUDE": "Latitude",
+        "LONGITUDE": "Longitude"
+    },
+    "CONF.ROLE": {
+        "KINDS": {
+            "PRINCIPAL.SINGULAR": "Principal",
+            "PRINCIPAL.PLURAL": "Principals",
+            "MOBMAN.SINGULAR": "Mobility manager",
+            "MOBMAN.PLURAL": "Mobility managers"
+        },
+        "ENSUREUSER": {
+            "TITLE": "Add user",
+            "EMAILMISSING": "Set the EMail of the school",
+            "ADDED": "Added: {{KIND}} - {{EMAIL}}",
+            "EXISTING": "Existing: {{KIND}} - {{EMAIL}}"
+        },
+        "RESETPASSWORD": {
+            "CONFIRM1": "Recreate password for: {{USERNAME}}",
+            "CONFIRM2": "Proceed to recreate password for: {{USERNAME}}",
+            "SUCCESS": "Password reset EMail sent to: {{EMAIL}}",
+            "ERROR": "Error in password reset for: {{EMAIL}}"
+        },
+        "REMOVEUSER": {
+            "CONFIRM1": "Remove from this school: {{USERNAME}}",
+            "CONFIRM2": "Proceed with removing from this school: {{USERNAME}}",
+            "SUCCESS": "Removed from this school: {{USERNAME}}",
+            "ERROR": "Error while removing from this school: {{USERNAME}}"
+        }
+    },
+    "CONF.CASCHOS": {
+        "MENUTITLE": "{{DEF.CASCHO.PLURAL}}",
+        "PAGETITLE": "{{DEF.CASCHO.PLURAL}}"
+    },
+    "CONF.CASCHO": {
+        "MENUTITLE": "{{DEF.CASCHO.SINGULAR}}",
+        "PAGETITLE": "{{DEF.CASCHO.SINGULAR}}"
+    },
+    "DASH": {
+        "MENUTITLE": "Dashboard",
+        "PAGETITLE": "Campaign monitoring dashboard"
+    },
+    "DASH.CAMP": {
+        "PAGETITLE": "Campaign Analysis Detail: {{CAMPAIGN}}",
+        "BOXRECAP": {
+            "T01": "Expected total trips: ",
+            "T02": "Trips detected by the campaign: ",
+            "T03": "Response rate: "
+        },
+        "BOXTEMPI": {
+            "T01": "Average travel time [Minutes]",
+            "T02": "Maximum detected",
+            "T03": "Minimum detected"
+        },
+        "BOXDISTANZE": {
+            "T01": "Average distance per trip [Km]",
+            "T02": "Maximum detected",
+            "T03": "Minimum detected"
+        },
+        "MODALFILTRI": {
+            "SEGMENT01": "schools",
+            "SEGMENT02": "travel modes",
+            "SEGMENT03": "type of trip",
+            "SEGMENTSUBTITLE": "Considered macro-classes",
+            "BUTTON01": "Cancel",
+            "BUTTON02": "Restore defaults",
+            "BUTTON03": "APPLY FILTERS",
+            "DIR1": "Outbound",
+            "DIR2": "Return"
+        },
+        "MAP": {
+            "MODALCLOSE": "CLOSE",
+            "MODAL01": "Total number of trips detected",
+            "MODAL02": "netid: ",
+            "MODAL03": "network id: "
+        },
+        "GRAPH": {
+            "DISTRIBDIST": {
+                "TITLE": "Travel distribution",
+                "SUBTITLE": "Analysis of distances and travel times by type of movement"
+            },
+            "VIAGGISCUOLE": {
+                "TITLE": "Trips per school",
+                "SUBTITLE": "Analysis of all home-school and school-home trips"
+            },
+            "VIAGGISCUOLETEMPI": {
+                "TITLE": "Average travel times per school [min]",
+                "SUBTITLE": "Analysis of all home-school and school-home trips",
+                "LEGENDA": "Average travel times [min]"
+            },
+            "VIAGGISCUOLEDISTANZE": {
+                "TITLE": "Cumulative routes per school [Km]",
+                "SUBTITLE": "Analysis of all home-school and school-home trips",
+                "LEGENDA": "Cumulative routes [Km]"
+            },
+            "VIAGGITORTAMODI": {
+                "TITLE": "Movements by type of Mode",
+                "SUBTITLE": "distribution of modes for travel segments (a trip can consist of several segments)",
+                "LEGENDA": "Length [Km]"
+            }
+        },
+        "BOXLEGENDA": {
+            "TITLE": "Legend",
+            "ORIGINI": "Distribution of origins",
+            "CARICHI": "Number of trips",
+            "SCUOLE": "Schools"
+        }
+    }
+}

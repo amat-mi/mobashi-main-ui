@@ -1,0 +1,80 @@
+<ng-template transloco let-fn="$implicit">
+  <ion-header>
+    <ion-toolbar color="brand">
+      <ion-buttons slot="start">
+        <ion-menu-button menu="conf"></ion-menu-button>
+      </ion-buttons>
+
+      <ion-title>
+        {{ tr.c(fn,'CONF.SCHOOL.PAGETITLE') }}
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ng-container *ngIf="school$ | async; let object">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title size="small">
+            {{ object?.name }}
+          </ion-title>
+
+          <ion-buttons slot="end">
+            <ion-button color="primary" fill="clear" slot="end" (click)="delete(object)"
+              *ngIf="object?.perms?.delete && !!object?.id">
+              <ion-icon slot="icon-only" name="trash"></ion-icon>
+            </ion-button>
+
+            <ion-button color="primary" fill="clear" slot="end" (click)="editing = !editing"
+              *ngIf="object?.perms?.change">
+              <ion-icon slot="icon-only" name="pencil"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <app-edit-form #form [object]="object" [disabled]="!editing" (status)="onStatus($event)">
+        <ion-item>
+          <ion-input type="text" name="name" [(ngModel)]="form.data.name" [label]="tr.c(fn,'CONF.SCHOOL.NAME')"
+            labelPlacement="stacked" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" name="code" [(ngModel)]="form.data.code" [label]="tr.c(fn,'CONF.SCHOOL.CODE')"
+            labelPlacement="stacked"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="email" name="email" [(ngModel)]="form.data.email" [label]="tr.c(fn,'CONF.SCHOOL.EMAIL')"
+            labelPlacement="stacked"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="number" name="students" [(ngModel)]="form.data.students"
+            [label]="tr.c(fn,'CONF.SCHOOL.STUDENTS')" labelPlacement="stacked"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" name="address" [(ngModel)]="form.data.address" [label]="tr.c(fn,'CONF.SCHOOL.ADDRESS')"
+            labelPlacement="stacked"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="number" name="lat" [(ngModel)]="form.data.lat" [label]="tr.c(fn,'CONF.SCHOOL.LATITUDE')"
+            labelPlacement="stacked"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="number" name="lng" [(ngModel)]="form.data.lng" [label]="tr.c(fn,'CONF.SCHOOL.LONGITUDE')"
+            labelPlacement="stacked"></ion-input>
+        </ion-item>
+
+        <ion-button type="submit" *ngIf="editing" [disabled]="!form.form.valid || !modified"
+          (click)="form.save(); save(object)">
+          {{ tr.c(fn,'DEF.SAVE') }}
+        </ion-button>
+
+        <ion-button type="submit" *ngIf="editing" [disabled]="!modified" (click)="form.undo(); undo(object)">
+          {{ tr.c(fn,'DEF.UNDO') }}
+        </ion-button>
+      </app-edit-form>
+
+      <app-role-school [school$]="school$">
+      </app-role-school>
+    </ng-container>
+  </ion-content>
+</ng-template>

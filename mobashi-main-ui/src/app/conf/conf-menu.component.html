@@ -1,0 +1,28 @@
+<ng-template transloco let-fn="$implicit">
+  <ng-container *ngIf="selectedCity$ | async; let city">
+    <ion-content>
+      <ion-item lines="none" *ngIf="city.immagine_small">
+        <img class="logoRectLittle" [src]="city.immagine_small.url" [width]="city.immagine_small.width"
+          [height]="city.immagine_small.height" />
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>{{city.name}}</ion-label>
+      </ion-item>
+
+      <hr class="separatore">
+
+      <ng-container *ngIf="menuData$ | async | async; let menuData">
+        <ion-list>
+          <ion-menu-toggle auto-hide="false" *ngFor="let l of menuData?.links ?? []">
+            <ion-item [class]="l.class ?? ''" [routerDirection]="'forward'" [routerLink]="l.path" lines="none"
+              routerLinkActive="activeMenuItem" [relativeTo]="this.activatedRoute.root">
+              <ion-icon [slot]="l.iconSlot ?? 'start'" [name]="l.icon" *ngIf="!!l.icon"></ion-icon>
+              <ion-label *ngIf="!!l.key">{{ tr.c(fn,l.key) }}</ion-label>
+              <ion-label *ngIf="!!l.label">{{l.label}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ng-container>
+    </ion-content>
+  </ng-container>
+</ng-template>
