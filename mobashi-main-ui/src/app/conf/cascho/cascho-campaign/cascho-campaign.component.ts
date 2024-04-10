@@ -56,4 +56,11 @@ export class CaschoCampaignComponent implements OnInit {
         school: object.id
       });
   }
+
+  showModalView(canView: boolean, object: any, modalView: any) {
+    if (canView) {
+      this.viewObject = object;
+      modalView.present();
+    }
+  }
 }

@@ -36,8 +36,10 @@
     <ng-container *ngIf="objects$ | async; let objects">
       <ion-list>
         <ng-container *ngFor="let object of objects">
-          <ion-item button="true" detail="false" (click)="this.viewObject = object; modalView.present()"
-            *ngIf="object.perms?.view">
+          <ion-item [button]="object.perms?.view" detail="false"
+            (click)="showModalView(object.perms?.view, object, modalView)">
+            <ion-icon name="qr-code" slot="start" color="primary" *ngIf="object.perms?.view"></ion-icon>
+
             <ion-label class="ion-text-wrap">
               {{ object.school_name }}
             </ion-label>
