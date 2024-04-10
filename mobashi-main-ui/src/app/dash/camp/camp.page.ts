@@ -730,13 +730,13 @@ export class CampPage implements OnInit {
     //console.log(this.filters)
   }
 
-  async filtraElementi() {
+  filtraElementi() {
     this.schoolsTemp = _.cloneDeep(this.schools)
     this.viaggiTemp = _.cloneDeep(this.viaggi);
     this.linkTemp = _.cloneDeep(this.link);
     // 1 -Filtro i link
     // controllare che il filtro venga applicato su tutti e 3 gli elementi
-    this.linkTemp[0].data.features = await this.filtraElementiDaVettoreGeom5(this.linkTemp[0]?.data.features, this.filtersTemp);
+    this.linkTemp[0].data.features = this.filtraElementiDaVettoreGeom5(this.linkTemp[0]?.data.features, this.filtersTemp);
     // estraggo link delle scuole restanti
     let modeInLinkTemp = _.uniq(_.map(_.flatMap(this.linkTemp[0].data.features.map((f: any) => { return f.properties.data; })), 'mode'));
     let schoolInLinkTemp = _.uniq(_.map(_.flatMap(this.linkTemp[0].data.features.map((f: any) => { return f.properties.data; })), 'school_id'));
@@ -770,7 +770,7 @@ export class CampPage implements OnInit {
     }
 
     // Preparare i criteri di filtraggio basati sui filtri per 'school_id' e 'mode'
-    const filtriScuole = filtri.find((f: any) => f.filtersSeg === this.modalSeg01)?.filtersClass.filter((f: any) => !f.selected).map((f: any) => f.class) || [];
+    const filtriScuole = filtri.find((f: any) => f.filtersSeg === this.modalSeg01)?.filtersClass.filter((f: any) => f.selected).map((f: any) => f.class) || [];
     const filtriModi = filtri.find((f: any) => f.filtersSeg === this.modalSeg02)?.filtersClass.filter((f: any) => !f.selected).map((f: any) => f.class) || [];
     const filtriDir = filtri.find((f: any) => f.filtersSeg === this.modalSeg03)?.filtersClass.filter((f: any) => !f.selected).map((f: any) => f.class) || [];
 
@@ -780,7 +780,7 @@ export class CampPage implements OnInit {
       }
 
       const filteredData = feature.properties.data.filter((d: { school_id: any; mode: any; dir: any; }) => {
-        const scuolaOk = !filtriScuole.includes(d.school_id);
+        const scuolaOk = filtriScuole.includes(d.school_id);
         const modoOk = !filtriModi.includes(d.mode);
         const dirOk = !filtriDir.includes(d.dir);
         return scuolaOk && modoOk && dirOk;
@@ -796,7 +796,7 @@ export class CampPage implements OnInit {
   }
 
 
-  async ngOnInit() {
+  ngOnInit() {
 
   }
 
@@ -829,7 +829,7 @@ export class CampPage implements OnInit {
     loading.present();
     // filtro
     //console.log('01 - filtro elementi')
-    await this.filtraElementi();
+    this.filtraElementi();
     // creo indici
     //console.log('02 - preparo indici')
     this.preparaIndici(this.viaggiTemp, this.schoolsTemp)
