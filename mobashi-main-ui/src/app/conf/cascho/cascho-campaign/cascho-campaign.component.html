@@ -42,7 +42,8 @@
               {{ object.school_name }}
             </ion-label>
 
-            <ion-button size="default" color="primary" fill="clear" slot="end" (click)="delete($event, object)">
+            <ion-button size="default" color="primary" fill="clear" slot="end" (click)="delete($event, object)"
+              *ngIf="object.perms?.delete">
               <ion-icon name="remove-circle" slot="icon-only"></ion-icon>
             </ion-button>
           </ion-item>
